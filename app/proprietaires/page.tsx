@@ -101,7 +101,7 @@ export default function ProprietairesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/212600000000?text=Bonjour, je suis propriétaire et souhaite confier mon bien à StayDak."
+              href="https://wa.me/212614192537?text=Bonjour, je suis propriétaire et souhaite confier mon bien à StayDak."
               target="_blank" rel="noopener noreferrer"
               className="gold-shimmer relative overflow-hidden inline-flex items-center justify-center gap-2 bg-[#c9a84c] text-[#050d1a] font-bold px-8 py-4 rounded-xl hover:bg-[#d4af37] transition-colors"
             >
@@ -164,7 +164,7 @@ export default function ProprietairesPage() {
                 ))}
               </ul>
               <a
-                href={`https://wa.me/212600000000?text=Bonjour, je souhaite en savoir plus sur la formule : ${name}`}
+                href={`https://wa.me/212614192537?text=Bonjour, je souhaite en savoir plus sur la formule : ${name}`}
                 target="_blank" rel="noopener noreferrer"
                 className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-sm transition-all ${
                   highlight
@@ -209,7 +209,7 @@ export default function ProprietairesPage() {
             Nos conseillers sont disponibles 7j/7 pour analyser votre situation et vous proposer la stratégie la plus adaptée.
           </p>
           <a
-            href="https://wa.me/212600000000?text=Bonjour, je souhaite confier mon bien immobilier à StayDak."
+            href="https://wa.me/212614192537?text=Bonjour, je souhaite confier mon bien immobilier à StayDak."
             target="_blank" rel="noopener noreferrer"
             className="gold-shimmer relative overflow-hidden inline-flex items-center gap-2 bg-[#c9a84c] text-[#050d1a] font-bold px-8 py-4 rounded-xl hover:bg-[#d4af37] transition-colors"
           >

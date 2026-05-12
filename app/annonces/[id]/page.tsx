@@ -106,7 +106,7 @@ export default async function AnnoncePage({ params }: Props) {
 
               <div className="space-y-3 mb-6">
                 <a
-                  href={`https://wa.me/212600000000?text=Bonjour, je suis intéressé par le bien : ${p.title} (ID: ${p.id})`}
+                  href={`https://wa.me/212614192537?text=Bonjour, je suis intéressé par le bien : ${p.title} (ID: ${p.id})`}
                   target="_blank" rel="noopener noreferrer"
                   className="gold-shimmer w-full flex items-center justify-center gap-2 bg-[#c9a84c] hover:bg-[#d4af37] text-[#050d1a] font-bold py-4 rounded-xl transition-colors text-base"
                 >

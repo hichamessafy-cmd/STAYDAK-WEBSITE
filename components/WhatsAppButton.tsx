@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/212600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20vos%20opportunit%C3%A9s%20d%27investissement%20immobilier%20au%20Maroc."
+      href="https://wa.me/212614192537?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20vos%20opportunit%C3%A9s%20d%27investissement%20immobilier%20au%20Maroc."
       target="_blank"
       rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}

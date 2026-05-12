@@ -120,7 +120,7 @@ export default function ServicesPage() {
               <div className="flex items-center justify-between pt-5 border-t border-white/5">
                 <span className="text-[#c9a84c] font-bold text-sm">{price}</span>
                 <Link
-                  href={`https://wa.me/212600000000?text=Bonjour, je souhaite en savoir plus sur votre service : ${title}`}
+                  href={`https://wa.me/212614192537?text=Bonjour, je souhaite en savoir plus sur votre service : ${title}`}
                   target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-sm text-white font-semibold hover:text-[#c9a84c] transition-colors"
                 >
