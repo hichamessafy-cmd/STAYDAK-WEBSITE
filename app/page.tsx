@@ -1,97 +1,156 @@
 import Link from "next/link";
-import { Search, MapPin, Star, Shield, Heart, Zap } from "lucide-react";
-import { properties, destinations, testimonials } from "@/lib/data";
+import { TrendingUp, Shield, MapPin, ArrowRight, ChevronRight, Star } from "lucide-react";
+import { properties, stats, services, testimonials, cities } from "@/lib/data";
 import PropertyCard from "@/components/PropertyCard";
 
 export default function Home() {
-  const featured = properties.filter((p) => p.featured);
+  const featured = properties.slice(0, 4);
 
   return (
     <main>
-      {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* ── HERO ── */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1489493585363-d69421e0edd3?w=1800&q=80')",
-          }}
+          className="absolute inset-0 bg-cover bg-center scale-105"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=1800&q=85')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050d1a]/70 via-[#050d1a]/50 to-[#050d1a]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050d1a]/60 via-transparent to-[#050d1a]/40" />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="inline-block bg-[#e8563a]/20 border border-[#e8563a]/40 text-[#f5a623] text-sm font-medium px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
-            ✨ +1 500 logements authentiques au Maroc
-          </span>
-          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
-            Vivez le Maroc<br />
-            <span className="text-[#e8563a]">autrement</span>
+        {/* Decorative gold lines */}
+        <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-[#c9a84c]/30 to-transparent" />
+        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-[#c9a84c]/20 to-transparent" />
+
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-20">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#c9a84c]/10 border border-[#c9a84c]/30 text-[#e0c97a] text-sm font-medium px-5 py-2 rounded-full mb-8 backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
+            Plateforme N°1 d&apos;investissement immobilier premium au Maroc
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.05] mb-6 tracking-tight">
+            Investissez dans<br />
+            <span className="text-gold-gradient">l&apos;immobilier marocain</span>
           </h1>
-          <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Riads centenaires, villas avec vue mer, kasbahs dans l&apos;Atlas…
-            Des logements uniques, sélectionnés pour leur authenticité.
+
+          <p className="text-xl text-[#b0bcd4] mb-10 max-w-2xl mx-auto leading-relaxed">
+            Des opportunités d&apos;exception sélectionnées par nos experts.
+            Rendements entre <span className="text-[#c9a84c] font-semibold">7% et 14% net/an</span>.
+            Accompagnement complet de A à Z.
           </p>
 
-          {/* Search bar */}
-          <div className="bg-white rounded-2xl shadow-2xl p-3 flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto">
-            <div className="flex-1 flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl">
-              <MapPin size={18} className="text-[#e8563a] shrink-0" />
-              <input
-                type="text"
-                placeholder="Où souhaitez-vous séjourner ?"
-                className="bg-transparent w-full text-sm text-gray-700 placeholder-gray-400 outline-none"
-              />
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
-              href="/properties"
-              className="flex items-center justify-center gap-2 bg-[#e8563a] hover:bg-[#c94428] text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+              href="/annonces"
+              className="gold-shimmer flex items-center justify-center gap-2 bg-[#c9a84c] hover:bg-[#d4af37] text-[#050d1a] font-bold px-8 py-4 rounded-xl transition-all text-lg shadow-[0_0_40px_rgba(201,168,76,0.3)]"
             >
-              <Search size={18} />
-              Rechercher
+              Voir les opportunités
+              <ArrowRight size={20} />
+            </Link>
+            <Link
+              href="/calculateur-roi"
+              className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-[#c9a84c]/40 text-white font-semibold px-8 py-4 rounded-xl transition-all text-lg backdrop-blur-sm"
+            >
+              <TrendingUp size={20} className="text-[#c9a84c]" />
+              Calculer mon ROI
             </Link>
           </div>
 
-          <p className="mt-5 text-gray-400 text-sm">
-            Destinations populaires :{" "}
-            {["Marrakech", "Essaouira", "Fès", "Agadir"].map((city, i) => (
-              <span key={city}>
-                <Link href="/properties" className="underline hover:text-[#e8563a] transition-colors">
-                  {city}
-                </Link>
-                {i < 3 && " · "}
+          {/* Trust indicators */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[#8a9ab5]">
+            {["Agrément CNRAI", "340+ investisseurs", "2.4 Mrd MAD gérés", "Notaire partenaire"].map((item) => (
+              <span key={item} className="flex items-center gap-2">
+                <Shield size={14} className="text-[#c9a84c]" />
+                {item}
               </span>
             ))}
-          </p>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8a9ab5] text-xs">
+          <span>Découvrir</span>
+          <div className="w-px h-8 bg-gradient-to-b from-[#c9a84c]/60 to-transparent animate-bounce" />
         </div>
       </section>
 
-      {/* Destinations */}
-      <section className="py-20 bg-[#f7f0e6]">
+      {/* ── STATS BAR ── */}
+      <section className="bg-gradient-to-r from-[#0f2044] via-[#162455] to-[#0f2044] border-y border-[#c9a84c]/15">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-3xl mb-1">{s.icon}</div>
+                <div className="text-2xl md:text-3xl font-black text-gold-gradient mb-1">{s.value}</div>
+                <div className="text-[#8a9ab5] text-xs font-medium">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURED PROPERTIES ── */}
+      <section className="py-24 bg-[#050d1a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a2e] mb-4">
-              Explorez nos destinations
+          <div className="flex items-end justify-between mb-14">
+            <div>
+              <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-widest">Sélection exclusive</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mt-2 mb-2">
+                Opportunités à fort rendement
+              </h2>
+              <p className="text-[#8a9ab5]">Actifs pré-qualifiés par notre équipe d&apos;analystes</p>
+            </div>
+            <Link
+              href="/annonces"
+              className="hidden sm:flex items-center gap-2 text-[#c9a84c] hover:text-[#e0c97a] font-semibold text-sm transition-colors"
+            >
+              Voir toutes les annonces <ChevronRight size={16} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featured.map((p) => (
+              <PropertyCard key={p.id} property={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DESTINATIONS / VILLES ── */}
+      <section className="py-24 bg-[#0b1628]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-widest">Marchés couverts</span>
+            <h2 className="text-3xl md:text-4xl font-black text-white mt-2 mb-3">
+              Investissez dans les villes clés du Maroc
             </h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              Du nord au sud, des côtes atlantiques aux sommets de l&apos;Atlas, le Maroc vous surprend à chaque détour.
+            <p className="text-[#8a9ab5] max-w-xl mx-auto">
+              De Casablanca à Marrakech, nous couvrons les marchés immobiliers à plus fort potentiel.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {destinations.map((dest) => (
+            {cities.map((city) => (
               <Link
-                key={dest.city}
-                href="/properties"
-                className="group relative overflow-hidden rounded-2xl aspect-square"
+                key={city.name}
+                href="/annonces"
+                className="group relative overflow-hidden rounded-2xl aspect-[3/4]"
               >
                 <img
-                  src={dest.image}
-                  alt={dest.city}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  src={city.image}
+                  alt={city.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <p className="text-white font-bold text-lg leading-none">{dest.city}</p>
-                  <p className="text-gray-300 text-xs mt-1">{dest.count} logements</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050d1a] via-[#050d1a]/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-white font-black text-xl leading-none">{city.name}</p>
+                  <p className="text-[#8a9ab5] text-xs mt-1">{city.properties} biens</p>
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <TrendingUp size={12} className="text-[#c9a84c]" />
+                    <span className="text-[#c9a84c] text-xs font-bold">{city.avgRoi}% ROI moy.</span>
+                  </div>
+                </div>
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="bg-[#c9a84c] text-[#050d1a] text-xs font-bold px-2 py-1 rounded-full">Voir →</span>
                 </div>
               </Link>
             ))}
@@ -99,126 +158,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured properties */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a2e] mb-3">
-                Logements coups de cœur
-              </h2>
-              <p className="text-gray-600">Sélectionnés par notre équipe pour leur authenticité exceptionnelle</p>
-            </div>
-            <Link
-              href="/properties"
-              className="hidden sm:inline-flex items-center text-[#e8563a] font-semibold hover:underline text-sm"
-            >
-              Voir tout →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featured.map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
-          <div className="mt-8 text-center sm:hidden">
-            <Link
-              href="/properties"
-              className="inline-block border border-[#e8563a] text-[#e8563a] font-semibold px-6 py-3 rounded-full hover:bg-[#e8563a] hover:text-white transition-colors"
-            >
-              Voir tous les logements
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-20 bg-[#1a1a2e]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Comment ça marche ?
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              Réserver votre logement de rêve n&apos;a jamais été aussi simple.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                icon: Search,
-                step: "01",
-                title: "Cherchez",
-                desc: "Entrez votre destination et vos dates. Filtrez par type de logement, budget et équipements.",
-                color: "#e8563a",
-              },
-              {
-                icon: Heart,
-                step: "02",
-                title: "Choisissez",
-                desc: "Parcourez les logements triés sur le volet, lisez les avis vérifiés et contactez l'hôte.",
-                color: "#f5a623",
-              },
-              {
-                icon: Zap,
-                step: "03",
-                title: "Profitez",
-                desc: "Réservez en quelques clics, recevez votre confirmation instantanée et partez l'esprit léger.",
-                color: "#2d6a4f",
-              },
-            ].map(({ icon: Icon, step, title, desc, color }) => (
-              <div key={step} className="text-center">
-                <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
-                  style={{ backgroundColor: `${color}20`, border: `2px solid ${color}40` }}
-                >
-                  <Icon size={28} style={{ color }} />
-                </div>
-                <div className="text-4xl font-black mb-2" style={{ color: `${color}30` }}>
-                  {step}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why StayDak */}
-      <section className="py-20 bg-white">
+      {/* ── WHY STAYDAK ── */}
+      <section className="py-24 bg-[#050d1a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-[#e8563a] font-semibold text-sm uppercase tracking-wider">Notre promesse</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a2e] mt-3 mb-6">
-                Pourquoi choisir<br />StayDak ?
+              <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-widest">Notre avantage</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mt-3 mb-8 leading-tight">
+                Pourquoi les investisseurs<br />
+                <span className="text-gold-gradient">nous font confiance</span>
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {[
-                  {
-                    icon: Shield,
-                    title: "Logements vérifiés",
-                    desc: "Chaque propriété est inspectée par notre équipe locale. Photos authentiques, descriptions précises, garanties.",
-                  },
-                  {
-                    icon: Star,
-                    title: "Hôtes de confiance",
-                    desc: "Nos hôtes sont sélectionnés pour leur hospitalité. Le label Super-hôte récompense les meilleurs.",
-                  },
-                  {
-                    icon: Heart,
-                    title: "Expériences uniques",
-                    desc: "Au-delà du logement : cours de cuisine, randonnées guidées, hammams — tout pour un séjour inoubliable.",
-                  },
-                ].map(({ icon: Icon, title, desc }) => (
+                  { title: "Accès off-market exclusif", desc: "70% de nos biens ne sont jamais publiés sur les portails grand public. Notre réseau vous donne un avantage compétitif décisif." },
+                  { title: "Due diligence complète", desc: "Analyse juridique, technique et financière systématique. Zéro mauvaise surprise : nous vérifions tout avant de vous présenter un bien." },
+                  { title: "Rendements vérifiés", desc: "Tous nos ROI sont calculés sur données réelles. Nous vous montrons les baux en cours, historiques de revenus et projections auditées." },
+                  { title: "Gestion clés-en-main", desc: "Investissez depuis l'étranger sans contrainte. Notre équipe locale gère locataires, maintenance et comptabilité pour vous." },
+                ].map(({ title, desc }) => (
                   <div key={title} className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#e8563a]/10 flex items-center justify-center shrink-0">
-                      <Icon size={22} className="text-[#e8563a]" />
-                    </div>
+                    <div className="w-2 h-2 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-[#1a1a2e] mb-1">{title}</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
+                      <h4 className="text-white font-bold mb-1">{title}</h4>
+                      <p className="text-[#8a9ab5] text-sm leading-relaxed">{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -226,52 +187,82 @@ export default function Home() {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80"
-                alt="Riad marocain"
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=85"
+                alt="Investissement immobilier Maroc"
                 className="rounded-3xl w-full object-cover aspect-[4/3] shadow-2xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 max-w-[200px]">
-                <div className="flex gap-1 mb-2">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} size={14} className="fill-[#f5a623] text-[#f5a623]" />
-                  ))}
-                </div>
-                <p className="text-xs text-gray-600 font-medium">4.9/5 de moyenne sur +8 000 avis vérifiés</p>
+              {/* Floating card */}
+              <div className="absolute -bottom-8 -left-8 glass rounded-2xl p-5 shadow-xl max-w-[210px]">
+                <div className="text-[#c9a84c] text-3xl font-black mb-1">+9.8%</div>
+                <div className="text-white text-sm font-semibold">ROI moyen du portefeuille</div>
+                <div className="text-[#8a9ab5] text-xs mt-1">Sur 340+ investisseurs accompagnés</div>
               </div>
-              <div className="absolute -top-6 -right-6 bg-[#e8563a] text-white rounded-2xl p-5 text-center shadow-xl">
-                <div className="text-3xl font-black">1500+</div>
-                <div className="text-xs font-medium mt-1">logements au Maroc</div>
+              <div className="absolute -top-6 -right-6 bg-[#c9a84c] rounded-2xl p-5 text-center shadow-xl">
+                <div className="text-[#050d1a] text-2xl font-black">#1</div>
+                <div className="text-[#050d1a] text-xs font-bold mt-0.5">Maroc premium</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-[#f7f0e6]">
+      {/* ── SERVICES OVERVIEW ── */}
+      <section className="py-24 bg-[#0b1628]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a2e] mb-4">
-              Ils ont adoré leur séjour
+            <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-widest">Nos expertises</span>
+            <h2 className="text-3xl md:text-4xl font-black text-white mt-2 mb-3">
+              Un accompagnement 360°
             </h2>
-            <p className="text-gray-600">Des voyageurs du monde entier font confiance à StayDak</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((s) => (
+              <div key={s.id} className="glass rounded-2xl p-6 hover:border-[#c9a84c]/40 transition-all group">
+                <div className="text-3xl mb-4">{s.icon}</div>
+                <h3 className="text-white font-bold mb-2 group-hover:text-[#c9a84c] transition-colors">{s.title}</h3>
+                <p className="text-[#8a9ab5] text-sm leading-relaxed mb-4">{s.desc}</p>
+                <p className="text-[#c9a84c] text-xs font-medium border-t border-white/5 pt-3">{s.detail}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/services" className="inline-flex items-center gap-2 text-[#c9a84c] hover:text-[#e0c97a] font-semibold transition-colors">
+              Découvrir tous nos services <ChevronRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
+      <section className="py-24 bg-[#050d1a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-widest">Témoignages</span>
+            <h2 className="text-3xl md:text-4xl font-black text-white mt-2">
+              Ce que disent nos investisseurs
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((t) => (
-              <div key={t.id} className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={15} className="fill-[#f5a623] text-[#f5a623]" />
-                  ))}
+              <div key={t.id} className="glass rounded-2xl p-7 hover:border-[#c9a84c]/30 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} size={14} className="fill-[#c9a84c] text-[#c9a84c]" />
+                    ))}
+                  </div>
+                  <span className="bg-[#c9a84c]/15 text-[#c9a84c] text-xs font-bold px-3 py-1 rounded-full border border-[#c9a84c]/30">
+                    {t.return}
+                  </span>
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">&ldquo;{t.text}&rdquo;</p>
+                <p className="text-[#b0bcd4] text-sm leading-relaxed mb-6 italic">&ldquo;{t.text}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#e8563a] flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#9a7a1e] flex items-center justify-center text-[#050d1a] font-black text-sm">
                     {t.avatar}
                   </div>
                   <div>
-                    <p className="font-semibold text-sm text-[#1a1a2e]">{t.name}</p>
-                    <p className="text-xs text-gray-500">{t.country}</p>
+                    <p className="text-white font-bold text-sm">{t.name}</p>
+                    <p className="text-[#8a9ab5] text-xs">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -280,21 +271,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="py-20 bg-[#e8563a]">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
-            Prêt à vivre une expérience inoubliable ?
+      {/* ── CTA FINAL ── */}
+      <section className="py-24 bg-gradient-to-br from-[#0f2044] via-[#162455] to-[#0b1628] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='1'%3E%3Cpath d='M30 0L60 30L30 60L0 30z'/%3E%3C/g%3E%3C/svg%3E\")", backgroundSize: "60px" }} />
+        <div className="relative max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-tight">
+            Votre prochain investissement<br />
+            <span className="text-gold-gradient">commence ici</span>
           </h2>
-          <p className="text-orange-100 mb-8 text-lg">
-            Plus de 1 500 logements vous attendent. Votre coup de cœur est peut-être à deux clics.
+          <p className="text-[#8a9ab5] mb-10 text-lg max-w-xl mx-auto">
+            Consultez gratuitement l&apos;un de nos conseillers et découvrez les opportunités adaptées à votre profil.
           </p>
-          <Link
-            href="/properties"
-            className="inline-block bg-white text-[#e8563a] font-bold px-8 py-4 rounded-full hover:bg-orange-50 transition-colors shadow-lg text-lg"
-          >
-            Découvrir les logements
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/annonces"
+              className="gold-shimmer flex items-center justify-center gap-2 bg-[#c9a84c] hover:bg-[#d4af37] text-[#050d1a] font-black px-8 py-4 rounded-xl transition-all text-lg shadow-[0_0_60px_rgba(201,168,76,0.4)]"
+            >
+              Voir les annonces <ArrowRight size={20} />
+            </Link>
+            <Link
+              href="/proprietaires"
+              className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-[#c9a84c]/40 text-white font-semibold px-8 py-4 rounded-xl transition-all text-lg"
+            >
+              Je suis propriétaire
+            </Link>
+          </div>
         </div>
       </section>
     </main>
