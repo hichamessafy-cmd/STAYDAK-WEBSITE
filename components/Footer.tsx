@@ -28,7 +28,7 @@ export default function Footer() {
                 Calculer mon ROI
               </Link>
               <a
-                href="https://wa.me/212600000000"
+                href="https://wa.me/212614192537"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-[#c9a84c]/40 hover:border-[#c9a84c] text-[#c9a84c] font-semibold px-6 py-3 rounded-xl transition-all text-sm"
@@ -104,9 +104,9 @@ export default function Footer() {
           <div>
             <h4 className="text-[#c9a84c] font-semibold text-xs uppercase tracking-widest mb-4">Contact</h4>
             <ul className="space-y-3 text-sm text-[#8a9ab5]">
-              <li>📍 Tour Anfa, Casablanca 20380</li>
-              <li>📞 +212 6 00 00 00 00</li>
-              <li>✉️ invest@staydak.ma</li>
+              <li>📍 Dakhla, Rue Ouala</li>
+              <li>📞 +212 6 14 19 25 37</li>
+              <li>✉️ contacte@staydak.ma</li>
               <li className="pt-2">
                 <span className="inline-block bg-emerald-500/15 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/20">
                   Disponible Lun–Sam 9h–19h
